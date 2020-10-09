@@ -1,4 +1,4 @@
-package controllers;
+package contoller;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
