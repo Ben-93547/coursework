@@ -1,4 +1,4 @@
-package contoller;
+package controllers;
 
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.json.simple.JSONArray;
@@ -13,8 +13,10 @@ import java.sql.ResultSet;
 @Path("users/")
 @Consumes(MediaType.MULTIPART_FORM_DATA)
 @Produces(MediaType.APPLICATION_JSON)
-//hello
+
 public class Users{
+    private String Username;
+
     @GET
     @Path("list")
     public String UsersList() {
@@ -36,9 +38,9 @@ public class Users{
         }
     }
     @GET
-    @Path("get/{UserID}")
+    @Path("getUser/{UserID}")
     public String GetUser(@PathParam("UserID") Integer UserID) {
-        System.out.println("Invoked Users.GetUser() with UserID " + UserID);
+        System.out.println("Invoked Users.GetUsers() with UserID " + UserID);
         try {
             PreparedStatement ps = Main.db.prepareStatement("SELECT UserName FROM Users WHERE UserID = ?");
             ps.setInt(1, UserID);
@@ -88,7 +90,25 @@ public class Users{
             return "{\"Error\": \"Unable to delete item, please see server console for more info.\"}";
         }
     }
+    @POST
+    @Path("add")
+    public String UsersAdd(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("Password") String Password, @FormDataParam("Email") String Email) {
+        System.out.println("Invoked Users.UsersAdd()");
+        try {
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Users (UserID, Username, Password, Email) VALUES (?, ?, ?, ?)");
+            ps.setInt(1, UserID);
+            ps.setString(2, Username);
+            ps.setString(3, Password);
+            ps.setString(4, Email);
+            ps.execute();
+            return "{\"OK\": \"Added user.\"}";
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
+        }
 
-//hello
+    }
+
+
 
 }

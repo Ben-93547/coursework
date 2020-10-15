@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>The Quiz</title>
+    <script src="/client/js/Users.js"></script>
+    <link rel="stylesheet" type="text/css" href="/client/css/styles.css">
 </head>
 <body>
-Hello world!
+<button onclick='getUsersList();'>Run getUsersList</button>
+<table id="UsersTable"></table>
+<br>
+
+<form id="userDetails">
+    User id: <input type="text" id="UserID">
+</form>
+<button onclick='getUser();'>Run getUser</button>
+<div id="DisplayOneUser"></div>
+<br>
+
+<form id="InputUserDetails">
+    UserID: <input type="text" name="UserID">
+    Username: <input type="text" name="Username">
+    Password: <input type="text" name="Password">
+    Email: <input type="text" name="Email">
+</form>
+<button onclick='addUser();'>Add User</button>
 </body>
 </html>
