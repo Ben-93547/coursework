@@ -1,5 +1,6 @@
 "use strict";
 function getUsersList() {
+    debugger;
     console.log("Invoked getUsersList()");     //console.log your BFF for debugging client side - also use debugger statement
     const url = "/users/list/";    		// API method on web server will be in Users class, method list
     fetch(url, {
@@ -19,7 +20,7 @@ function getUsersList() {
 function formatUsersList(myJSONArray){
     let dataHTML = "";
     for (let item of myJSONArray) {
-        dataHTML += "<tr><td>" + item.UserID + "<td><td>" + item.UserName + "<tr><td>";
+        dataHTML += "<tr><td>" + item.UserID + "<td><td>" + item.Username + "<tr><td>";
     }
     document.getElementById("UsersTable").innerHTML = dataHTML;
 }
@@ -59,6 +60,46 @@ function addUser() {
         } else {
             window.open("/client/welcome.html", "_self");   //URL replaces the current page.  Create a new html file
         }                                                  //in the client folder called welcome.html
+    });
+
+}
+function UsersLogin() {
+    //debugger;
+    console.log("Invoked UsersLogin() ");
+    let url = "/users/login";
+    let formData = new FormData(document.getElementById('LoginForm'));
+
+    fetch(url, {
+        method: "POST",
+        body: formData,
+    }).then(response => {
+        return response.json();                 //now return that promise to JSON
+    }).then(response => {
+        if (response.hasOwnProperty("Error")) {
+            alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
+        } else {
+            Cookies.set("Token", response.Token);
+            Cookies.set("Username", response.Username);
+            window.open("index.html", "_self");       //open index.html in same tab
+        }
+    });
+}
+
+function logout() {
+    //debugger;
+    console.log("Invoked logout");
+    let url = "/users/logout";
+    fetch(url, {method: "POST"
+    }).then(response => {
+        return response.json();                 //now return that promise to JSON
+    }).then(response => {
+        if (response.hasOwnProperty("Error")) {
+            alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
+        } else {
+            Cookies.remove("Token", response.Token);    //UserName and Token are removed
+            Cookies.remove("UserName", response.Username);
+            window.open("index.html", "_self");       //open index.html in same tab
+        }
     });
 }
 
