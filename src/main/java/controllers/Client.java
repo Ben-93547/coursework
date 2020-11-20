@@ -44,8 +44,7 @@ public class Client {
         return getFile("client/css/" + path);
     }
 
-    @GET
-    @Path("{path}")
+    @GET    @Path("{path}")
     @Produces({"text/html"})
     public byte[] getIHTMLFile(@PathParam("path") String path) {
         return getFile("client/" + path);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>The Quiz</title>
     <script src="/client/js/Users.js"></script>
-    <link rel="stylesheet" type="text/css" href="/client/css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
 </head>
 <body>
 <table id="UsersTable"></table>
@@ -16,14 +16,6 @@
 <button onclick='getUser();'>Run getUser</button>
 <div id="DisplayOneUser"></div>
 <br>
-
-<form id="InputUserDetails">
-    UserID: <input type="text" name="UserID">
-    Username: <input type="text" name="Username">
-    Password: <input type="text" name="Password">
-    Email: <input type="text" name="Email">
-</form>
-<button onclick='addUser();'>Add User</button>
 <button onclick='logout();'>LOGOUT</button>
 </body>
 </html>

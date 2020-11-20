@@ -98,7 +98,7 @@ public class Users{
         }
 
     }
-       @POST
+    @POST
     @Path("delete/{UserID}")
     public String DeleteUser(@PathParam("UserID") Integer UserID) throws Exception {
         System.out.println("Invoked Users.DeleteUser()");
@@ -173,4 +173,3 @@ public class Users{
 
 
 }
-//hi

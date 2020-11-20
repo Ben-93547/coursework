@@ -1,0 +1,71 @@
+body {
+    background-color: white;
+}
+
+#login{
+    background-color: slategray;
+    width: 500px;
+    height: 75px;
+    position: absolute;
+    left: 50px;
+    top: 210px;
+    border-radius: 25px;
+}
+
+#login:hover{
+    background-color: steelblue;
+}
+
+#forgot:hover{
+    background-color: steelblue;
+}
+
+#forgot{
+    background-color: slategray;
+    position: absolute;
+    left: 50px;
+    top: 310px;
+    width: 500px;
+    height: 75px;
+    border-radius: 25px;
+}
+
+#Username{
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    height: 75px;
+    width: 490px;
+}
+
+#Password{
+    height: 75px;
+    width: 490px;
+    position: absolute;
+    left: 50px;
+    top: 110px
+}
+
+#border{
+    border: 3px solid black;
+    position: absolute;
+    left: 700px;
+    top: 300px;
+    height: 500px;
+    width: 600px;
+    border-radius: 25px;
+}
+
+#new{
+    height: 75px;
+    width: 500px;
+    background-color: slategray;
+    position: absolute;
+    left: 50px;
+    top: 410px;
+    border-radius: 25px;
+}
+
+#new:hover{
+    background-color: steelblue;
+}

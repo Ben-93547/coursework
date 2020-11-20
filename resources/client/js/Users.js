@@ -2,9 +2,9 @@
 function getUsersList() {
     debugger;
     console.log("Invoked getUsersList()");     //console.log your BFF for debugging client side - also use debugger statement
-    const url = "/users/list/";    		// API method on web server will be in Users class, method list
+    const url = "/users/list/";           // API method on web server will be in Users class, method list
     fetch(url, {
-        method: "GET",				//Get method
+        method: "GET",          //Get method
     }).then(response => {
         return response.json();                 //return response as JSON
     }).then(response => {
@@ -98,8 +98,9 @@ function logout() {
         } else {
             Cookies.remove("Token", response.Token);    //UserName and Token are removed
             Cookies.remove("UserName", response.Username);
-            window.open("index.html", "_self");       //open index.html in same tab
+            window.open("login.html", "_self");       //open index.html in same tab
         }
     });
 }
+
 

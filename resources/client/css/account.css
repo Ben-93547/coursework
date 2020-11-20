@@ -1,0 +1,9 @@
+#border{
+    border: 3px solid black;
+    position: absolute;
+    left: 675px;
+    top: 250px;
+    height: 500px;
+    width: 600px;
+    border-radius: 25px;
+}
