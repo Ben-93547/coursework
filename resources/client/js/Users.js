@@ -58,7 +58,7 @@ function addUser() {
         if (response.hasOwnProperty("Error")) {
             alert(JSON.stringify(response));
         } else {
-            window.open("/client/welcome.html", "_self");   //URL replaces the current page.  Create a new html file
+            window.location.reload();   //URL replaces the current page.  Create a new html file
         }                                                  //in the client folder called welcome.html
     });
 
@@ -101,6 +101,10 @@ function logout() {
             window.open("login.html", "_self");       //open index.html in same tab
         }
     });
+}
+
+function ResetPassword() {
+
 }
 
 

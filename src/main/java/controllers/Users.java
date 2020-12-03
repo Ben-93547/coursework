@@ -15,7 +15,7 @@ import java.util.UUID;
 @Consumes(MediaType.MULTIPART_FORM_DATA)
 @Produces(MediaType.APPLICATION_JSON)
 
-public class Users{
+public class Users {
     private String Username;
 
     @GET
@@ -26,7 +26,7 @@ public class Users{
         try {
             PreparedStatement ps = Main.db.prepareStatement("SELECT UserID, UserName, Password, Email FROM Users");
             ResultSet results = ps.executeQuery();
-            while (results.next()==true) {
+            while (results.next() == true) {
                 JSONObject row = new JSONObject();
                 row.put("UserID", results.getInt(1));
                 row.put("Username", results.getString(2));
@@ -40,6 +40,7 @@ public class Users{
             return "{\"Error\": \"Unable to list items.  Error code xx.\"}";
         }
     }
+
     @GET
     @Path("get/{UserID}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -63,6 +64,7 @@ public class Users{
             return "{\"Error\": \"Unable to get item, please see server console for more info.\"}";
         }
     }
+
     @POST
     @Path("update")
     public String updateFood(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("Password") String Password, @FormDataParam("Email") String Email) {
@@ -80,6 +82,7 @@ public class Users{
             return "{\"Error\": \"Unable to update item, please see server console for more info.\"}";
         }
     }
+
     @POST
     @Path("add")
     public String UsersAdd(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("Password") String Password, @FormDataParam("Email") String Email) {
@@ -98,6 +101,7 @@ public class Users{
         }
 
     }
+
     @POST
     @Path("delete/{UserID}")
     public String DeleteUser(@PathParam("UserID") Integer UserID) throws Exception {
@@ -115,6 +119,7 @@ public class Users{
             return "{\"Error\": \"Unable to delete item, please see server console for more info.\"}";
         }
     }
+
     @POST
     @Path("login")
     public String UsersLogin(@FormDataParam("Username") String Username, @FormDataParam("Password") String Password) {
@@ -146,15 +151,16 @@ public class Users{
             return "{\"Error\": \"Server side error!\"}";
         }
     }
+
     @POST
     @Path("logout")
-    public static String logout(@CookieParam("Token") String Token){
-        try{
-            System.out.println("users/logout "+ Token);
+    public static String logout(@CookieParam("Token") String Token) {
+        try {
+            System.out.println("users/logout " + Token);
             PreparedStatement ps = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token=?");
             ps.setString(1, Token);
             ResultSet logoutResults = ps.executeQuery();
-            if (logoutResults.next()){
+            if (logoutResults.next()) {
                 int UserID = logoutResults.getInt(1);
                 //Set the token to null to indicate that the user is not logged in
                 PreparedStatement ps1 = Main.db.prepareStatement("UPDATE Users SET Token = NULL WHERE UserID = ?");
@@ -170,6 +176,5 @@ public class Users{
             return "{\"error\": \"Server side error!\"}";
         }
     }
-
 
 }

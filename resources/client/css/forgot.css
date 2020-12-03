@@ -14,39 +14,7 @@ div {
     background: linear-gradient(to bottom, #33ccff 0%, #ff9933 100%);
 }
 
-#UserID {
-    height: 75px;
-    width: 500px;
-    position: absolute;
-    left: 50px;
-    top: 15px;
-}
-
-#Username {
-    height: 75px;
-    width: 500px;
-    position: absolute;
-    left: 50px;
-    top: 115px;
-}
-
-#Password {
-    height: 75px;
-    width: 500px;
-    position: absolute;
-    left: 50px;
-    top: 215px;
-}
-
-#Email {
-    height: 75px;
-    width: 500px;
-    position: absolute;
-    left: 50px;
-    top: 315px;
-}
-
-#Add {
+#reset{
     height: 75px;
     width: 500px;
     background-color: limegreen;
@@ -56,6 +24,21 @@ div {
     border-radius: 25px;
 }
 
-#Add:hover{
+#reset:hover{
     background-color: forestgreen;
+}
+
+#EmailReset{
+    height: 75px;
+    width: 500px;
+    position: absolute;
+    left: 50px;
+    top: 200px;
+}
+
+h1{
+    position: absolute;
+    left: 185px;
+    top: 50px;
+    font-family: "Sweet Sans Pro",sans-serif;
 }
