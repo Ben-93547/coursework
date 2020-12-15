@@ -16,15 +16,15 @@ function getUsersList() {
     });
 }
 
-
 function formatUsersList(myJSONArray){
     let dataHTML = "";
     for (let item of myJSONArray) {
-        dataHTML += "<tr><td>" + item.UserID + "<td><td>" + item.Username + "<tr><td>";
+        dataHTML += "<tr><td>" + item.UserID + "<td><td>" + item.Username + "<tr><td>" + item.Password + "<tr><td>" + item.Email + "<tr><td>";
     }
     document.getElementById("UsersTable").innerHTML = dataHTML;
 }
 //getUser() returns one row of data from the database using a GET and path parameter
+
 function getUser() {
     debugger;
     console.log("Invoked getUser()");     //console.log your BFF for debugging client side
@@ -40,10 +40,11 @@ function getUser() {
         if (response.hasOwnProperty("Error")) {         //checks if response from server has an "Error"
             alert(JSON.stringify(response));            // if it does, convert JSON object to string and alert
         } else {
-            document.getElementById("DisplayOneUser").innerHTML = response.UserID + " " + response.Username;  //output data
+            document.getElementById("DisplayOneUser").innerHTML = response.UserID + " " + response.Username + " " + response.Password + " " + response.Email + " ";  //output data
         }
     });
 }
+
 //addUser function to add a user to the database
 function addUser() {
     console.log("Invoked AddUser()");
@@ -84,9 +85,9 @@ function UsersLogin() {
         }
     });
 }
-//hi
+
 function logout() {
-    //debugger;
+    //debugger
     console.log("Invoked logout");
     let url = "/users/logout";
     fetch(url, {method: "POST"
@@ -97,7 +98,7 @@ function logout() {
             alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
         } else {
             Cookies.remove("Token", response.Token);    //UserName and Token are removed
-            Cookies.remove("UserName", response.Username);
+            Cookies.remove("Username", response.Username);
             window.open("login.html", "_self");       //open index.html in same tab
         }
     });
@@ -106,5 +107,31 @@ function logout() {
 function ResetPassword() {
 
 }
+
+function uploadImage() {
+    console.log("invoked uploadImage()");
+    var fileInput = document.getElementById('the-file');
+    var file = fileInput.files[0];
+    var formData = new FormData();
+    formData.append('file', file);
+
+    const url = "/user/image";
+
+    fetch(url, {
+        method: "POST",
+        body: formData,
+    }).then(response => {
+        return response.text()          //method returns a promise, have to return from here to get text
+    }).then(response => {
+        if (response.startsWith('Error')) {
+            alert(response);
+        } else {
+            window.open("admin.html", "_self");
+        }
+    });
+
+}
+
+
 
 

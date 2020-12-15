@@ -24,7 +24,7 @@ public class Users {
         System.out.println("Invoked Users.UsersList()");
         JSONArray response = new JSONArray();
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID, UserName, Password, Email FROM Users");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID, Username, Password, Email FROM Users");
             ResultSet results = ps.executeQuery();
             while (results.next() == true) {
                 JSONObject row = new JSONObject();
@@ -42,21 +42,21 @@ public class Users {
     }
 
     @GET
-    @Path("get/{UserID}")
+    @Path("getUser/{UserID}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_JSON)
     public String GetUser(@PathParam("UserID") Integer UserID) {
         System.out.println("Invoked Users.GetUser() with UserID " + UserID);
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT Username, Password, Email FROM Users WHERE UserID = ?");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID, Username, Password, Email FROM Users WHERE UserID = ?");
             ps.setInt(1, UserID);
             ResultSet results = ps.executeQuery();
             JSONObject response = new JSONObject();
             if (results.next() == true) {
-                response.put("UserID", UserID);
-                response.put("Username", results.getString(1));
-                response.put("Password", results.getString(2));
-                response.put("Email", results.getString(3));
+                response.put("UserID", results.getString(1));
+                response.put("Username", results.getString(2));
+                response.put("Password", results.getString(3));
+                response.put("Email", results.getString(4));
             }
             return response.toString();
         } catch (Exception exception) {
@@ -101,6 +101,7 @@ public class Users {
         }
 
     }
+
 
     @POST
     @Path("delete/{UserID}")
@@ -177,4 +178,51 @@ public class Users {
         }
     }
 
+    @POST
+    @Path("image")
+    public String userImage(@FormDataParam("PhotoID") Integer PhotoID,@FormDataParam("file") InputStream uploadedInputStream,
+                            @FormDataParam("file") FormDataContentDisposition fileDetail) throws Exception {
+
+        System.out.println("Invoked User.userImage()");
+
+        String fileName = fileDetail.getFileName();  //file name submitted through form
+        int dot = fileName.lastIndexOf('.');            //find where the . is to get the file extension
+        String fileExtension = fileName.substring(dot + 1);   //get file extension from fileName
+        String newFileName = "client/img/" + UUID.randomUUID() + "." + fileExtension;  //create a new unique identifier for file and append extension
+
+        PreparedStatement statement = Main.db.prepareStatement("UPDATE Photos SET PhotoName = ? WHERE PhotoID = ?" );
+        statement.setString(1, newFileName);
+        statement.setInt(2, PhotoID);
+        statement.executeUpdate();
+
+        String uploadedFileLocation = "C:\\Users\\Claire\\coursework\\resources" + newFileName;
+
+        try {
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            OutputStream out = new FileOutputStream(new File(uploadedFileLocation));
+            while ((read = uploadedInputStream.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            out.flush();
+            out.close();
+            System.out.println("File uploaded to server and imageLink saved to database");
+            return "File uploaded to server and imageLink saved to database";
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return "{\"Error\": \"Something as gone wrong.  Please contact the administrator with the error code UC-UI. \"}";
+        }
+
+
+    }
+
+
 }
+
+
+
+
+
+

@@ -1,0 +1,82 @@
+#Audi1{
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    left: 125px;
+    top: 100px;
+}
+
+#Audi1:hover {opacity:0.7}
+
+#Audi2{
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    left: 625px;
+    top: 100px;
+}
+
+#Audi2:hover {opacity:0.7}
+
+#Audi3{
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    left: 1110px;
+    top: 100px;
+}
+
+#Audi3:hover {opacity:0.7}
+
+#back{
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 0px;
+}
+
+#back:hover {opacity: 1}
+
+.AudiR8 {
+    font-family: "Courier New";
+    color: #330000;
+    position:absolute;
+    top:40px;
+    left: 135px;
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.AudiQ{
+    font-family: "Courier New";
+    color: #330000;
+    position:absolute;
+    top:40px;
+    left: 575px;
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.Audirs6{
+    font-family: "Courier New";
+    color: #330000;
+    position:absolute;
+    top:40px;
+    left: 1100px;
+    font-size: 200%;
+    font-weight: bold;
+}
