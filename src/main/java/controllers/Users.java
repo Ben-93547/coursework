@@ -1,5 +1,6 @@
 package controllers;
 
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -7,6 +8,7 @@ import server.Main;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.UUID;
@@ -195,7 +197,9 @@ public class Users {
         statement.setInt(2, PhotoID);
         statement.executeUpdate();
 
-        String uploadedFileLocation = "C:\\Users\\Claire\\coursework\\resources" + newFileName;
+        //String uploadedFileLocation = "C:\\Users\\Claire\\coursework\\resources" + newFileName;
+        String uploadedFileLocation = "C:\\Users\\Laura\\College\\#Year 2 Coursework\\BenRichardsCoursework\\resources\\" + newFileName;
+
 
         try {
             int read = 0;

@@ -109,13 +109,13 @@ function ResetPassword() {
 }
 
 function uploadImage() {
+    debugger;
     console.log("invoked uploadImage()");
-    var fileInput = document.getElementById('the-file');
-    var file = fileInput.files[0];
-    var formData = new FormData();
-    formData.append('file', file);
-
-    const url = "/user/image";
+    //var fileInput = document.getElementById('the-file');
+    //let PhotoID = document.getElementById('PhotoID');
+    //var file = fileInput.files[0];
+    let formData = new FormData(document.getElementById('uploadForm'));  //Used the form element id to get all the data in one go
+    const url = "/users/image";
 
     fetch(url, {
         method: "POST",
@@ -126,7 +126,7 @@ function uploadImage() {
         if (response.startsWith('Error')) {
             alert(response);
         } else {
-            window.open("admin.html", "_self");
+            window.open("Admin.html", "_self");
         }
     });
 
