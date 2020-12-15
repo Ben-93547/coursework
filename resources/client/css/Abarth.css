@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 #Abarth1{
+=======
+#tree{
+>>>>>>> origin/master
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
     position: absolute;
+<<<<<<< HEAD
     left: 125px;
     top: 100px;
 }
@@ -30,6 +35,13 @@
 }
 
 #Abarth3:hover {opacity:0.7}
+=======
+    left: 100px;
+    top: 200px;
+}
+
+#tree:hover {opacity:0.7}
+>>>>>>> origin/master
 
 #back{
     background-color: #f4511e;
@@ -49,6 +61,7 @@
     top: 0px;
 }
 
+<<<<<<< HEAD
 #back:hover {opacity: 1}
 
 .abarth124 {
@@ -80,3 +93,6 @@
     font-size: 200%;
     font-weight: bold;
 }
+=======
+#back:hover {opacity: 1}
+>>>>>>> origin/master
