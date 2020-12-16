@@ -114,6 +114,7 @@ function uploadImage() {
     //var fileInput = document.getElementById('the-file');
     //let PhotoID = document.getElementById('PhotoID');
     //var file = fileInput.files[0];
+    //Removed the above so that the form id is used (the form has all the data needed)
     let formData = new FormData(document.getElementById('uploadForm'));  //Used the form element id to get all the data in one go
     const url = "/users/image";
 
