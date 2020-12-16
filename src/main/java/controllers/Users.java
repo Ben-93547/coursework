@@ -191,7 +191,7 @@ public class Users {
         int dot = fileName.lastIndexOf('.');            //find where the . is to get the file extension
         String fileExtension = fileName.substring(dot + 1);   //get file extension from fileName
         String newFileName = "client/img/" + UUID.randomUUID() + "." + fileExtension;  //create a new unique identifier for file and append extension
-
+        //changed the column names to remove spaces
         PreparedStatement statement = Main.db.prepareStatement("UPDATE Photos SET PhotoName = ? WHERE PhotoID = ?" );
         statement.setString(1, newFileName);
         statement.setInt(2, PhotoID);
